@@ -1,19 +1,22 @@
 class Tracker:
     
-    
+    # initialising
     def __init__(self, balance, budget, income):
         self.balance = balance
         self.budget = budget
         self.income = income
         print(self.balance)
-    
+
+    #update methods
     def update_balance(self, numerical_value):
         self.balance += numerical_value
         print("New Balance: {}".format(self.balance))
     
+    #printing out object string information method
     def __repr__(self):
         return "Balance: {balance}\nBudget: {budget}\nIncome: {income}\nCategories: {categories}".format(income = self.income, balance = self.balance, budget = self.budget, categories = self.categories)
 
+    #category that allows expenses to be divided into
     def category(self):
         self.categories = {}
         while(True):
@@ -26,7 +29,8 @@ class Tracker:
                 self.categories[category] = 0
                 print("Category added: {}".format(category))
                 break
-
+            
+            
 test_object = Tracker(300, 400, 120)
 test_object.update_balance(-300)
 test_object.category()
