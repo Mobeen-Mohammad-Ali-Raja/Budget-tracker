@@ -5,6 +5,7 @@ class Tracker:
         self.balance = balance
         self.budget = budget
         self.income = income
+        self.categories = {}
         print(self.balance)
 
     #update methods
@@ -18,20 +19,29 @@ class Tracker:
 
     #category that allows expenses to be divided into
     def category(self):
-        self.categories = {}
         while(True):
             category = input("Enter a category (or enter X to return to main menu): ")
+            amount = 0
             if category.lower() == "x":
                 break
             if category in self.categories.keys():
                 print("Category already exists, please enter a different category (or enter x to return to main menu)")
-            else:
-                self.categories[category] = 0
-                print("Category added: {}".format(category))
-                break
+                continue
+            amount = float(input("Enter amount: "))
+            self.categories[category] = amount
+            print("Category added: {}".format(category))
             
             
+    def get_total_budget(self, categories):
+        total = 0
+        for value in categories.values():
+            total += value
+        return total
+    
+    
+print("\U2708")
 test_object = Tracker(300, 400, 120)
 test_object.update_balance(-300)
 test_object.category()
 print(test_object)
+print(test_object.get_total_budget(test_object.categories))
